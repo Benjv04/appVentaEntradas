@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Compra de Entradas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Informacion del Cliente</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="cliente.nombre" name="nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input [(ngModel)]="cliente.apellido" name="apellido"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Edad</ion-label>
+        <ion-input type="number" [(ngModel)]="cliente.edad" name="edad" (ionChange)="calcularTotal()"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Selecciona un Evento</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-radio-group [(ngModel)]="selectedEvento" (ionChange)="calcularTotal()">
+        <ion-list>
+          <ion-item *ngFor="let evento of eventos">
+            <ion-label>{{ evento.nombre }} - ${{ evento.precio }}</ion-label>
+            <ion-radio slot="start" [value]="evento"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-radio-group>
+      <ion-item>
+        <ion-label position="floating">Cantidad de Entradas</ion-label>
+        <ion-input type="number" [(ngModel)]="cantidadEntradas" name="cantidad" (ionChange)="calcularTotal()"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Total a Pagar</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Subtotal: ${{ calcularSubtotal() }}</p>
+      <p>Descuento: ${{ calcularDescuento() }}</p>
+      <p>Total: ${{ total }}</p>
+      <ion-button expand="full" (click)="confirmarCompra()">Confirmar Compra</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
