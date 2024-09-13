@@ -69,7 +69,7 @@ export class VentaPage {
       console.log('Compra confirmada:', this.total);
       alert(`Compra confirmada. Total a pagar: $${this.total}`);
     } else {
-      alert('Por favor, ingresa todos los datos correctamente antes de confirmar la compra.');
+      alert('Por favor, ingresa todos los datos correctamente.');
     }
   }
   
